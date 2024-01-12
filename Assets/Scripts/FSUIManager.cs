@@ -9,6 +9,10 @@ namespace FruitSellingShop
 {
     public class FSUIManager : MonoBehaviour
     {
+        #region Creating Instance
+        private static FSUIManager instance;
+        public static FSUIManager Instance => instance;
+        #endregion
         #region DataModels
         [Serializable]
         public enum FruitType
@@ -39,9 +43,18 @@ namespace FruitSellingShop
         [SerializeField] private List<FruitsData> fruitsDatas;
         [SerializeField] private FSFruitItem fruitItem;
         [SerializeField] private Transform position;
+
+        public List<FSFruitItem> fruitItems = new List<FSFruitItem>();
         #endregion
 
         #region Private Methods
+        private void Awake()
+        {
+            if(instance == null)
+            {
+                instance = this;
+            }
+        }
         private void Start ()
         {
             InitMethod();
@@ -57,7 +70,8 @@ namespace FruitSellingShop
             for(int i = 0; i < fruitsDatas.Count; i++)
             {
                 FSFruitItem _fruitItem = Instantiate(fruitItem, position);
-                _fruitItem.Init(fruitsDatas[i].icon, fruitsDatas[i].capacity, fruitsDatas[i].cost);
+                _fruitItem.Init(fruitsDatas[i].icon, fruitsDatas[i].capacity, fruitsDatas[i].cost, fruitsDatas[i].type);
+                fruitItems.Add(_fruitItem);
             }
         }
 

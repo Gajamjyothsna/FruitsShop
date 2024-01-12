@@ -1,18 +1,46 @@
+using FruitSellingShop;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FSGameManager : MonoBehaviour
+namespace FruitSellingShop
 {
-    // Start is called before the first frame update
-    void Start()
+    public class FSGameManager : MonoBehaviour
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        #region Singleton
+        private static FSGameManager instance;
+        public static FSGameManager Instance => instance;
+        #endregion
+        #region Private Variables
+        [SerializeField] private List<FruitModelData> fruitModelDatas;
+        [SerializeField] private Transform spawningPosition;
+        #endregion
+        #region DataModel
+        [Serializable]
+        public class FruitModelData
+        {
+            public GameObject fruitModel;
+            public FSUIManager.FruitType type;
+        }
+        #endregion
+        #region Private Methods
+        private void Awake()
+        {
+            if (instance == null)
+            {
+                instance = this;
+            }
+        }
+        internal void SpawnFruit(FSUIManager.FruitType type)
+        {
+            GameObject _fruitModelObj = GetFruitModel(type);
+            Instantiate(_fruitModelObj, spawningPosition);
+        }
+        private GameObject GetFruitModel(FSUIManager.FruitType fruitType)
+        {
+            return fruitModelDatas.Find(x => x.type == fruitType).fruitModel;
+        }
+        #endregion
     }
 }

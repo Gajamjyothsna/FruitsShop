@@ -1223,6 +1223,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 156601801}
+  - component: {fileID: 156601803}
+  - component: {fileID: 156601802}
   m_Layer: 7
   m_Name: BasketCubes
   m_TagString: Untagged
@@ -1270,6 +1272,54 @@ Transform:
   - {fileID: 104136124}
   m_Father: {fileID: 1351011830}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &156601802
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156601800}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &156601803
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 156601800}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &172886348
 GameObject:
   m_ObjectHideFlags: 0
@@ -1848,6 +1898,7 @@ MonoBehaviour:
     icon: {fileID: 21300000, guid: 1ca4ffa2d92031d46a47ee4a122f87f2, type: 3}
   fruitItem: {fileID: 4270259694903303121, guid: 2277f8f15e81c1f478110a23e995e359, type: 3}
   position: {fileID: 172886349}
+  fruitItems: []
 --- !u!1 &365567805
 GameObject:
   m_ObjectHideFlags: 0
@@ -4555,6 +4606,37 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1125633399}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1141757245
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1141757246}
+  m_Layer: 7
+  m_Name: FruitPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1141757246
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1141757245}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2.989, y: -5.2, z: -1.887}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1351011830}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1149505940
 GameObject:
   m_ObjectHideFlags: 0
@@ -5377,6 +5459,7 @@ Transform:
   m_Children:
   - {fileID: 156601801}
   - {fileID: 1946733361}
+  - {fileID: 1141757246}
   m_Father: {fileID: 1484628611}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1352664001
@@ -5888,6 +5971,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32c9a248fe904e449a41d23fa4a48510, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fruitModelDatas:
+  - fruitModel: {fileID: 7666315005518554163, guid: ae4d4aa9307de7f45b3722b8c1f5a402, type: 3}
+    type: 1
+  - fruitModel: {fileID: 3285703074033735422, guid: 467a341b681b93e44a710f4346e47749, type: 3}
+    type: 2
+  - fruitModel: {fileID: 6562001842055905622, guid: 868d04540e07fbe4abe05bfc274253cd, type: 3}
+    type: 3
+  - fruitModel: {fileID: 6937298464912322402, guid: 298fe8f611f4fa54ba00d5ad731606b2, type: 3}
+    type: 4
+  - fruitModel: {fileID: 8147779946213436978, guid: 5695631f380661649bde53c4ca26bb89, type: 3}
+    type: 5
+  - fruitModel: {fileID: 7682286612434911487, guid: 4a55de858083ac84b919f573672294e5, type: 3}
+    type: 6
+  - fruitModel: {fileID: 2970277156231569693, guid: 373608a1c323eee41b7cb61af4cd392e, type: 3}
+    type: 7
+  - fruitModel: {fileID: 5000214542206166487, guid: 364eeabb739c218498df71c26bdcd909, type: 3}
+    type: 8
+  spawningPosition: {fileID: 1141757246}
 --- !u!1 &1597388003
 GameObject:
   m_ObjectHideFlags: 0

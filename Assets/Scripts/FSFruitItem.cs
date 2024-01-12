@@ -1,22 +1,71 @@
+using FruitSellingShop;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+namespace FruitSellingShop
+{ 
 public class FSFruitItem : MonoBehaviour
 {
+    #region Events
+    public delegate void DisableSpriteIndicator();
+    public static event DisableSpriteIndicator disableSpriteIndicator;
+    #endregion
     #region Private Variables
     [SerializeField] private Image icon;
     [SerializeField] private Text count;
     [SerializeField] private Text cost;
+
+    [SerializeField] private Image indicatorButtonBG;
+
+    [SerializeField] private Button indicator;
+
+    [SerializeField] private List<Color> colorList;
+
+    private FSUIManager.FruitType _type;
+    private int fruitCount;
+
     #endregion
 
     #region Private Methods
-    public void Init(Sprite _icon, int _count, int _cost)
+    private void OnEnable()
+    {
+        disableSpriteIndicator += DisableSpriteIndicators;
+    }
+    private void OnDisable()
+    {
+        disableSpriteIndicator -= DisableSpriteIndicators;
+    }
+    private void Start()
+    {
+        indicator.onClick.RemoveAllListeners();
+        indicator.onClick.AddListener(EnableIndicator);
+    }
+    public void Init(Sprite _icon, int _count, int _cost, FSUIManager.FruitType _fruitType)
     {
         icon.sprite = _icon;
         count.text = "Count :" + _count.ToString();
         cost.text = "Cost : " + _cost.ToString();
+        _type = _fruitType;
+        fruitCount = _count;
+    }
+    private void EnableIndicator()
+    {
+        DisableSpriteIndicators();
+        indicatorButtonBG.GetComponent<Image>().color = colorList[0];
+        int updatedCount = fruitCount;
+        count.text = "Count :" + (updatedCount - 1).ToString();
+        FSGameManager.Instance.SpawnFruit(_type);
+    }
+    private void DisableSpriteIndicators()
+    {
+        for (int i = 0; i< FSUIManager.Instance.fruitItems.Count; i++)
+        {
+             FSUIManager.Instance.fruitItems[i].indicator.GetComponent<Image>().color = colorList[1];
+        }
     }
     #endregion
+}
 }
