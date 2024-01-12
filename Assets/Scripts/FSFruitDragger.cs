@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using UnityEngine;
 
 namespace FruitSellingShop
@@ -21,20 +22,13 @@ namespace FruitSellingShop
         {
             return Camera.main.WorldToScreenPoint(transform.position);
         }
-
         private void OnTriggerEnter(Collider other)
         {
-            Debug.LogError("trigger enter");
-            Debug.LogError("other name " + other.name);
-            Debug.LogError("Object Name " + this.gameObject.name);
-            int count = 0;
-            if (other.gameObject.tag == "Basket")
+            if(other.gameObject.tag == "Basket")
             {
-                    Debug.LogError("Basket");
-                    FSUIManager.Instance.SetScore(_type);
-                    Destroy(this.gameObject, 1f);
-                return;
-                
+                Debug.Log("Basket");
+                FSUIManager.Instance.SetScore(_type);
+                Destroy(this.gameObject, 1f);
             }
         }
         internal void SetFruitType(FSUIManager.FruitType type)

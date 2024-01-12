@@ -32,6 +32,7 @@ namespace FruitSellingShop
                 instance = this;
             }
         }
+
         internal void SpawnFruit(FSUIManager.FruitType type)
         {
             GameObject _fruitModel  = GetFruitModel(type);

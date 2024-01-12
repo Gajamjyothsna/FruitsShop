@@ -65,6 +65,9 @@ namespace FruitSellingShop
         {
             InitMethod();
             data = new FSData();
+            data = FSDataManager.instance.LoadData();
+            score = data.score;
+            scoreText.text = score.ToString();
         }
         private void InitMethod()
         {

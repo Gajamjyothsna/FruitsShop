@@ -18,9 +18,15 @@ namespace FruitSellingShop
             string dataToSave = JsonUtility.ToJson(data);
             File.WriteAllText(Application.persistentDataPath + Path.DirectorySeparatorChar + "dataFile.json", dataToSave);
         }
-        internal void LoadData()
+        internal FSData LoadData()
         {
-
+            FSData data = new FSData();
+            if (File.Exists(Application.persistentDataPath + Path.DirectorySeparatorChar + "dataFile.json")) ;
+            {
+                string dataString = File.ReadAllText(Application.persistentDataPath + Path.DirectorySeparatorChar + "dataFile.json");
+                data = JsonUtility.FromJson<FSData>(dataString);
+            }
+            return data;
         }
     }
 }

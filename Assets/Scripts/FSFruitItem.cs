@@ -55,9 +55,13 @@ public class FSFruitItem : MonoBehaviour
     {
         DisableSpriteIndicators();
         indicatorButtonBG.GetComponent<Image>().color = colorList[0];
-        int updatedCount = fruitCount;
-        count.text = "Count :" + (updatedCount - 1).ToString();
-        FSGameManager.Instance.SpawnFruit(_type);
+        if(fruitCount > 0)
+        {
+             fruitCount = fruitCount - 1;
+            count.text = "Count :" + fruitCount.ToString();
+            FSGameManager.Instance.SpawnFruit(_type);
+        }
+       
     }
     private void DisableSpriteIndicators()
     {
