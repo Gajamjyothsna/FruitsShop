@@ -34,12 +34,18 @@ namespace FruitSellingShop
         }
         internal void SpawnFruit(FSUIManager.FruitType type)
         {
-            GameObject _fruitModelObj = GetFruitModel(type);
-            Instantiate(_fruitModelObj, spawningPosition);
+            GameObject _fruitModel  = GetFruitModel(type);
+            GameObject _fruitModelObj = Instantiate(_fruitModel, spawningPosition);
+            _fruitModelObj.GetComponent<FSFruitDragger>().SetFruitType(type);
+
         }
         private GameObject GetFruitModel(FSUIManager.FruitType fruitType)
         {
             return fruitModelDatas.Find(x => x.type == fruitType).fruitModel;
+        }
+        private void OnApplicationQuit()
+        {
+            FSUIManager.Instance.SaveData();
         }
         #endregion
     }

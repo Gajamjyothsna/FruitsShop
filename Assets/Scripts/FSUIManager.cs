@@ -44,7 +44,13 @@ namespace FruitSellingShop
         [SerializeField] private FSFruitItem fruitItem;
         [SerializeField] private Transform position;
 
+        [SerializeField] private Text scoreText;
+
+        private int score;
+
         public List<FSFruitItem> fruitItems = new List<FSFruitItem>();
+
+        private FSData data;
         #endregion
 
         #region Private Methods
@@ -58,6 +64,7 @@ namespace FruitSellingShop
         private void Start ()
         {
             InitMethod();
+            data = new FSData();
         }
         private void InitMethod()
         {
@@ -104,6 +111,17 @@ namespace FruitSellingShop
         {
             scrollableArea.SetActive(false);
             scrollableButton.gameObject.SetActive(true);
+        }
+        internal void SetScore(FruitType type)
+        {
+            int cost = fruitsDatas.Find(x => x.type == type).cost;
+            score = score + cost;
+            scoreText.text = score.ToString();
+        }
+        internal void SaveData()
+        {
+            data.score = score;
+            FSDataManager.instance.SaveData(data);
         }
         #endregion
     }
