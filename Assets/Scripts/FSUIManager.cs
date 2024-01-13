@@ -120,12 +120,41 @@ namespace FruitSellingShop
             int cost = fruitsDatas.Find(x => x.type == type).cost;
             score = score + cost;
             scoreText.text = score.ToString();
+            FSUIManager.instance.SaveData();
         }
         internal void SaveData()
         {
             data.score = score;
             FSDataManager.instance.SaveData(data);
         }
+        private int zeroIndex;
+        //internal int GetIndexFromFruitList()
+        //{
+        //    for (int i = 0; i < fruitItems.Count;i++)
+        //    {
+        //        if (fruitItems[i].GetCount() == 0) 
+        //        {
+        //            zeroIndex = i;
+        //        }
+        //    }
+        //    return zeroIndex;
+        //}
+        private bool status;
+        //internal bool CheckIfAnyCountBecomesZero()
+        //{
+        //    for (int i = 0; i < fruitItems.Count; i++)
+        //    {
+        //        if (fruitItems[i].GetCount() == 0)
+        //        {
+        //            status = true;
+        //        }
+        //        else
+        //        {
+        //            status = false;
+        //        }
+        //    }
+        //    return status;
+        //}
         #endregion
     }
 }

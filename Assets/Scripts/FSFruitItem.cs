@@ -1,6 +1,7 @@
 using FruitSellingShop;
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.WindowsRuntime;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
@@ -57,8 +58,19 @@ public class FSFruitItem : MonoBehaviour
         indicatorButtonBG.GetComponent<Image>().color = colorList[0];
         if(fruitCount > 0)
         {
-             fruitCount = fruitCount - 1;
+            fruitCount = fruitCount - 1;
             count.text = "Count :" + fruitCount.ToString();
+             // bool _status = FSUIManager.Instance.CheckIfAnyCountBecomesZero();
+                //Debug.LogError("Status" + _status);
+                //if(_status)
+                //{
+                //    int _index = FSUIManager.Instance.GetIndexFromFruitList();
+                //    Destroy(FSUIManager.Instance.fruitItems[_index].gameObject);
+                //}
+                if(count.text == "0")
+                {
+                    Destroy(this.gameObject);
+                }
             FSGameManager.Instance.SpawnFruit(_type);
         }
        
@@ -70,6 +82,10 @@ public class FSFruitItem : MonoBehaviour
              FSUIManager.Instance.fruitItems[i].indicator.GetComponent<Image>().color = colorList[1];
         }
     }
+    //internal int GetCount()
+    //{
+    //        return int.Parse(count.text);
+    //}
     #endregion
 }
 }
